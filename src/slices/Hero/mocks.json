@@ -1,0 +1,40 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Melted"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Mollit dolor ut sunt velit et nostrud deserunt minim ex sunt irure non eu sit tempor."
+						}
+					}
+				]
+			},
+			"button": {
+				"key": "a9eb977f-9d8c-499e-838d-5c4231a4b7e2",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "hundred"
+				}
+			}
+		},
+		"items": []
+	}
+]
