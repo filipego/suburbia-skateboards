@@ -1,7 +1,6 @@
 import { Bounded } from "@/components/Bounded";
 import { Heading } from "@/components/Heading";
 import { Content, isFilled } from "@prismicio/client";
-import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
 import { SkateboardProduct } from "./SkateBoardProduct";
 
