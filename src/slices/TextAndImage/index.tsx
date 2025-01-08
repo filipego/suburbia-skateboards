@@ -4,7 +4,8 @@ import { Heading } from "@/components/Heading";
 import { Content } from "@prismicio/client";
 import { PrismicText, SliceComponentProps } from "@prismicio/react";
 import clsx from "clsx";
-import ParallaxImage from "./ParallaxImage";
+import { ParallaxImage } from "./ParallaxImage";
+
 
 /**
  * Props for `TextAndImage`.
