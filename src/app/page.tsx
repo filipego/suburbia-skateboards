@@ -14,7 +14,6 @@ export default async function Page() {
 
   const slices = bundleTextAndImageSlices(page.data.slices)
 
-  console.log(slices)
 
   return <SliceZone slices={slices} components={{
     ...components,
