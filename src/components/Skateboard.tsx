@@ -8,7 +8,13 @@ import { useGLTF, useTexture } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
 type SkateboardProps = {
-
+    wheelTextureURLs: string[]
+    wheelTextureURL: string
+    deckTextureURLs: string[]
+    deckTextureURL: string
+    truckColor: string
+    boltColor: string
+    constantWheelSpin?: boolean
 }
 
 type GLTFResult = GLTF & {
@@ -27,7 +33,15 @@ type GLTFResult = GLTF & {
     materials: {}
 }
 
-export function Skateboard(props: SkateboardProps) {
+export function Skateboard({
+    wheelTextureURLs,
+    wheelTextureURL,
+    deckTextureURLs,
+    deckTextureURL,
+    truckColor,
+    boltColor,
+    constantWheelSpin
+}: SkateboardProps) {
     const { nodes } = useGLTF('/skateboard.gltf') as GLTFResult
 
 
@@ -63,7 +77,7 @@ export function Skateboard(props: SkateboardProps) {
         return material
     }, [gripTapeDiffuse, gripTapeRoughness])
 
-    const boltColor = "#555555";
+
 
     const boltMaterial = useMemo(() => new THREE.MeshStandardMaterial({
         color: boltColor,
@@ -74,7 +88,7 @@ export function Skateboard(props: SkateboardProps) {
 
 
     const metalNormal = useTexture('/skateboard/metal-normal.avif')
-    const truckColor = "#555555";
+
     metalNormal.wrapS = THREE.RepeatWrapping;
     metalNormal.wrapT = THREE.RepeatWrapping;
     metalNormal.anisotropy = 8;
@@ -88,8 +102,25 @@ export function Skateboard(props: SkateboardProps) {
         roughness: .25
     }), [truckColor])
 
+    const deckTexture = useTexture("/skateboard/Deck.webp")
+    deckTexture.flipY = false;
+
+    const deckMaterial = useMemo(() => new THREE.MeshStandardMaterial({
+        map: deckTexture,
+        roughness: .1
+    }), [])
+
+
+    const wheelTexture = useTexture("/skateboard/SkateWheel1.png")
+    wheelTexture.flipY = false;
+
+    const wheelMaterial = useMemo(() => new THREE.MeshStandardMaterial({
+        map: wheelTexture,
+        roughness: .35
+    }), [])
+
     return (
-        <group {...props} dispose={null}>
+        <group dispose={null}>
             <group name="Scene">
                 <mesh
                     name="GripTape"
@@ -104,7 +135,7 @@ export function Skateboard(props: SkateboardProps) {
                     castShadow
                     receiveShadow
                     geometry={nodes.Wheel1.geometry}
-                    material={nodes.Wheel1.material}
+                    material={wheelMaterial}
                     position={[0.238, 0.086, 0.635]}
                 />
                 <mesh
@@ -112,7 +143,7 @@ export function Skateboard(props: SkateboardProps) {
                     castShadow
                     receiveShadow
                     geometry={nodes.Wheel2.geometry}
-                    material={nodes.Wheel2.material}
+                    material={wheelMaterial}
                     position={[-0.237, 0.086, 0.635]}
                 />
                 <mesh
@@ -120,7 +151,7 @@ export function Skateboard(props: SkateboardProps) {
                     castShadow
                     receiveShadow
                     geometry={nodes.Deck.geometry}
-                    material={nodes.Deck.material}
+                    material={deckMaterial}
                     position={[0, 0.271, -0.002]}
                 />
                 <mesh
@@ -128,7 +159,7 @@ export function Skateboard(props: SkateboardProps) {
                     castShadow
                     receiveShadow
                     geometry={nodes.Wheel4.geometry}
-                    material={nodes.Wheel4.material}
+                    material={wheelMaterial}
                     position={[-0.238, 0.086, -0.635]}
                     rotation={[Math.PI, 0, Math.PI]}
                 />
@@ -146,7 +177,7 @@ export function Skateboard(props: SkateboardProps) {
                     castShadow
                     receiveShadow
                     geometry={nodes.Wheel3.geometry}
-                    material={nodes.Wheel3.material}
+                    material={wheelMaterial}
                     position={[0.237, 0.086, -0.635]}
                     rotation={[Math.PI, 0, Math.PI]}
                 />
